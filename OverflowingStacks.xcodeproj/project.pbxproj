@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4291C3523CE293100D53C88 /* Registry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C2F23CE293100D53C88 /* Registry+CoreDataClass.swift */; };
+		A4291C3623CE293100D53C88 /* Registry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3023CE293100D53C88 /* Registry+CoreDataProperties.swift */; };
+		A4291C3723CE293100D53C88 /* SOVFQuestion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3123CE293100D53C88 /* SOVFQuestion+CoreDataClass.swift */; };
+		A4291C3823CE293100D53C88 /* SOVFQuestion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3223CE293100D53C88 /* SOVFQuestion+CoreDataProperties.swift */; };
+		A4291C3923CE293100D53C88 /* SOVFAnswer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3323CE293100D53C88 /* SOVFAnswer+CoreDataClass.swift */; };
+		A4291C3A23CE293100D53C88 /* SOVFAnswer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3423CE293100D53C88 /* SOVFAnswer+CoreDataProperties.swift */; };
+		A4291C3C23CE2B0000D53C88 /* SOVFQuestion+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4291C3B23CE2B0000D53C88 /* SOVFQuestion+.swift */; };
 		A49A672023CD16D40005F2D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A671F23CD16D40005F2D7 /* AppDelegate.swift */; };
 		A49A672323CD16D40005F2D7 /* OverflowingStacks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A49A672123CD16D40005F2D7 /* OverflowingStacks.xcdatamodeld */; };
 		A49A672523CD16D40005F2D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A672423CD16D40005F2D7 /* SceneDelegate.swift */; };
@@ -42,6 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A4291C2F23CE293100D53C88 /* Registry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A4291C3023CE293100D53C88 /* Registry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A4291C3123CE293100D53C88 /* SOVFQuestion+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SOVFQuestion+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A4291C3223CE293100D53C88 /* SOVFQuestion+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SOVFQuestion+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A4291C3323CE293100D53C88 /* SOVFAnswer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SOVFAnswer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A4291C3423CE293100D53C88 /* SOVFAnswer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SOVFAnswer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A4291C3B23CE2B0000D53C88 /* SOVFQuestion+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SOVFQuestion+.swift"; sourceTree = "<group>"; };
 		A49A671C23CD16D40005F2D7 /* OverflowingStacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OverflowingStacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49A671F23CD16D40005F2D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A49A672223CD16D40005F2D7 /* OverflowingStacks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OverflowingStacks.xcdatamodel; sourceTree = "<group>"; };
@@ -90,6 +104,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4291C1623CE284D00D53C88 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				A4291C2F23CE293100D53C88 /* Registry+CoreDataClass.swift */,
+				A4291C3023CE293100D53C88 /* Registry+CoreDataProperties.swift */,
+				A4291C3123CE293100D53C88 /* SOVFQuestion+CoreDataClass.swift */,
+				A4291C3223CE293100D53C88 /* SOVFQuestion+CoreDataProperties.swift */,
+				A4291C3323CE293100D53C88 /* SOVFAnswer+CoreDataClass.swift */,
+				A4291C3423CE293100D53C88 /* SOVFAnswer+CoreDataProperties.swift */,
+				A4291C3B23CE2B0000D53C88 /* SOVFQuestion+.swift */,
+			);
+			path = "Managed Objects";
+			sourceTree = "<group>";
+		};
 		A49A671323CD16D40005F2D7 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +141,7 @@
 		A49A671E23CD16D40005F2D7 /* OverflowingStacks */ = {
 			isa = PBXGroup;
 			children = (
+				A4291C1623CE284D00D53C88 /* Managed Objects */,
 				A49A676223CD39B40005F2D7 /* Session.swift */,
 				A49A676023CD1EC80005F2D7 /* BaseViewViewModel.swift */,
 				A49A675823CD180D0005F2D7 /* Data Models */,
@@ -298,13 +327,20 @@
 			files = (
 				A49A675B23CD18CC0005F2D7 /* MasterViewViewModel.swift in Sources */,
 				A49A672723CD16D40005F2D7 /* MasterViewController.swift in Sources */,
+				A4291C3723CE293100D53C88 /* SOVFQuestion+CoreDataClass.swift in Sources */,
 				A49A675723CD18060005F2D7 /* SOVFDataModels.swift in Sources */,
 				A49A672023CD16D40005F2D7 /* AppDelegate.swift in Sources */,
+				A4291C3523CE293100D53C88 /* Registry+CoreDataClass.swift in Sources */,
 				A49A676123CD1EC80005F2D7 /* BaseViewViewModel.swift in Sources */,
+				A4291C3A23CE293100D53C88 /* SOVFAnswer+CoreDataProperties.swift in Sources */,
+				A4291C3923CE293100D53C88 /* SOVFAnswer+CoreDataClass.swift in Sources */,
 				A49A672923CD16D40005F2D7 /* DetailViewController.swift in Sources */,
+				A4291C3623CE293100D53C88 /* Registry+CoreDataProperties.swift in Sources */,
 				A49A672323CD16D40005F2D7 /* OverflowingStacks.xcdatamodeld in Sources */,
+				A4291C3823CE293100D53C88 /* SOVFQuestion+CoreDataProperties.swift in Sources */,
 				A49A672523CD16D40005F2D7 /* SceneDelegate.swift in Sources */,
 				A49A676323CD39B40005F2D7 /* Session.swift in Sources */,
+				A4291C3C23CE2B0000D53C88 /* SOVFQuestion+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,22 +4,30 @@
         <attribute name="timestamp" optional="YES" attributeType="Date"/>
         <userInfo/>
     </entity>
-    <entity name="Registry" representedClassName="Registry" syncable="YES" codeGenerationType="class">
+    <entity name="Registry" representedClassName="Registry" syncable="YES">
         <attribute name="key" optional="YES" attributeType="String"/>
         <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="SOVFQuestion" representedClassName="SOVFQuestion" syncable="YES" codeGenerationType="class">
-        <attribute name="answerCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="SOVFAnswer" representedClassName="SOVFAnswer" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isAccepted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastActivityOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="score" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="question" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SOVFQuestion" inverseName="answers" inverseEntity="SOVFQuestion"/>
+    </entity>
+    <entity name="SOVFQuestion" representedClassName="SOVFQuestion" syncable="YES">
+        <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isAnswered" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="lastActivityDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastActivityOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="answers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SOVFAnswer" inverseName="question" inverseEntity="SOVFAnswer"/>
     </entity>
     <elements>
         <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
         <element name="Registry" positionX="261" positionY="198" width="128" height="73"/>
         <element name="SOVFQuestion" positionX="279" positionY="225" width="128" height="148"/>
+        <element name="SOVFAnswer" positionX="270" positionY="261" width="128" height="118"/>
     </elements>
 </model>

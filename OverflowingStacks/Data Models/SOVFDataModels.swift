@@ -29,9 +29,9 @@ struct SOVFQuestionDataModel: Decodable {
     let viewCount: Int
     let answerCount: Int
     let score: Int
-    let lastActivityDate: Date
-    let creationDate: Date
-    let questionId: Int
+    let lastActivityOn: Date
+    let createdOn: Date
+    let id: Int64
     let link: String
     let title: String
 
@@ -42,9 +42,9 @@ struct SOVFQuestionDataModel: Decodable {
         case viewCount = "view_count"
         case answerCount = "answer_count"
         case score
-        case lastActivityDate = "last_activity_date"
-        case creationDate = "creation_date"
-        case questionId = "question_id"
+        case lastActivityOn = "last_activity_date"
+        case createdOn = "creation_date"
+        case id = "question_id"
         case link
         case title
     }
@@ -54,13 +54,13 @@ struct SOVFAnswersDataModel: Decodable {
     
 }
 
-struct SOVFAnswerItemDataModel: Decodable {
-    let owner: SOVFOwnerDataModel
+struct SOVFAnswerDataModel: Decodable {
+//    let owner: SOVFOwnerDataModel
     let isAccepted: Bool
     let score: Int
     let lastActivityDate: Date
     let creationDate: Date
-    let answerId: Int
+    let answerId: Int64
     let questionId: Int
 }
 

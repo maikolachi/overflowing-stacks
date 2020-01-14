@@ -24,13 +24,26 @@ class MaterViewViewModelTests: XCTestCase {
     func testFetchQuestions() {
         
         let exp = expectation(description: "Waiting for fetch")
+        var allq = [SOVFQuestionDataModel]()
         
-        masterViewModel.fetchRecentQuestions(startEpoch: 1578967912 - 4 * 60 * 60, endEpoch: 1578967912 ) { (error, questions) in
-            print("Done")
-            exp.fulfill()
+        masterViewModel.fetchRecentQuestions(startEpoch: 1578967912 - 4 * 60 * 60, endEpoch: 1578967912 ) { (error, questions, hasMore ) in
+            
+            if let _ = error {
+                exp.fulfill()
+                XCTFail()
+            } else if let q = questions {
+                print("\(hasMore) \(q.count)")
+                if hasMore {
+                    allq.append(contentsOf: q)
+                } else {
+                    allq.append(contentsOf: q)
+                    exp.fulfill()
+                }
+            }
         }
         waitForExpectations(timeout: 100.0, handler: nil)
-        
+        XCTAssert(allq.count == 106)
+//        print(allq.count)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
