@@ -72,6 +72,8 @@ class MasterViewViewModel: BaseViewViewModel {
                         self?.fetchAnswers(query: answersQuery, onCompletion: { (error, answers) in
                             if let error = error {
                                 
+                            } else {
+                                
                             }
                         })
                         
@@ -104,13 +106,72 @@ class MasterViewViewModel: BaseViewViewModel {
         }.resume()
     }
     
-    func fetchAnswers( query: String, onCompletion: @escaping((FetchError?, [SOVFAnswerDataModel]?) -> Void)) {
+    func fetchAnswers( page: Int = 1, query: String, onCompletion: @escaping((FetchError?, [SOVFAnswerDataModel]?) -> Void)) {
         
-        guard let url = self.answerURL(ids: query) else {
-            onCompletion(FetchError.answerFailure(localizedDescription: "Unable to fetch url"))
+        guard let url = self.answerURL(page: page, ids: query) else {
+            onCompletion(FetchError.answerFailure(localizedDescription: "Unable to fetch url"), nil)
             return
         }
         
+        let session = URLSession(configuration: .default)
+        
+        session.dataTask(with: url) { [weak self] (data, response, error) in
+            
+            if let error = error {
+                onCompletion(FetchError.questionFailure(localizedDescription: error.localizedDescription), nil, false )
+            } else if let data = data {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .secondsSince1970
+                
+                do {
+                    let responseData = try decoder.decode(SOVFAnswersResponseDataModel.self, from: data)
+                    
+                    // Pass what has been retrieved so far
+                    let answeredItems = responseData.items.filter {
+                        return $0.answerCount >= 2
+                    }
+                    
+                    if responseData.hasMore {
+                        
+                        let answersQuery = answeredItems.map { "\($0.id)" }.joined(separator: ";")
+                        
+                        // Fetch all the answers for this page
+                        
+                        self?.fetchAnswers(query: answersQuery, onCompletion: { (error, answers) in
+                            if let error = error {
+                                
+                            } else {
+                                
+                            }
+                        })
+                        
+                        onCompletion(nil, answeredItems, true)
+                        self?.fetchRecentQuestions(page: page + 1, startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: onCompletion)
+                        
+                        
+                        
+                    } else {
+                        
+                        onCompletion(nil, answeredItems, false )
+                        // Fetch the answers
+                        
+                        // After all the questions are fetched, fetch the
+                        //                        self?.fetchRecentAnswers(startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: { (error, answerData) in
+                        //
+                        //                            if let error = error {
+                        //                                onCompletion(FetchError.answerFailure(localizedDescription: error.localizedDescription), nil )
+                        //                            } else {
+                        //
+                        //                            }
+                        //
+                        //                        })
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    onCompletion(FetchError.dataModelDecodeFailure, nil, false)
+                }
+            }
+        }.resume()
         
         
     }
