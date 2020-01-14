@@ -15,9 +15,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-
+    var persistentContainer: NSPersistentContainer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.persistentContainer = self.persistentContainer
         
 //        viewModel.fetchRecentQuestions { (error, questions) in
 //            print("Done")

@@ -9,7 +9,7 @@
 import Foundation
 
 struct SOVFQuestionsResponseDataModel: Decodable {
-    let items: [SOVFQuestionsDataModel]
+    let items: [SOVFQuestionDataModel]
     let hasMore: Bool
     let quotaMax: Int
     let quotaRemaining: Int
@@ -22,7 +22,7 @@ struct SOVFQuestionsResponseDataModel: Decodable {
     }
 }
 
-struct SOVFQuestionsDataModel: Decodable {
+struct SOVFQuestionDataModel: Decodable {
     let tags: [String]
 //    let owner: SOVFOwnerDataModel
     let isAnswered: Bool

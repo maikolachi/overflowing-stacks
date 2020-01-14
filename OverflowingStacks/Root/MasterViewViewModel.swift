@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 enum FetchError: Error {
     case fetchConfigurationFailure
     case sessionFailure(localizedDescription: String)
     case dataModelDecodeFailure
+    case cacheFailure
 }
 
 class QuestionsFetchOperation: Operation {
@@ -19,8 +21,9 @@ class QuestionsFetchOperation: Operation {
 
 }
 
-
 class MasterViewViewModel: BaseViewViewModel {
+    
+    weak var persistentContainer: NSPersistentContainer? 
     
 //    let recentPastHours = 72    // Meaning of "recent"
     var fetchQueue = OperationQueue()
@@ -32,7 +35,7 @@ class MasterViewViewModel: BaseViewViewModel {
 //
 //    }
     
-    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping((FetchError?, [SOVFQuestionsDataModel]? ) -> Void) ) {
+    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping((FetchError?, [SOVFQuestionDataModel]? ) -> Void) ) {
         
         if self.isRetrieveCancelled {
             return
@@ -44,7 +47,7 @@ class MasterViewViewModel: BaseViewViewModel {
         }
         
         let session = URLSession(configuration: .default)
-        print("Retrieving page: \(page)")
+
         session.dataTask(with: url) { (data, response, error) in
             
             if let error = error {
@@ -73,6 +76,28 @@ class MasterViewViewModel: BaseViewViewModel {
     }
 }
 
+extension MasterViewViewModel {
+
+    func cacheQuestions( items: [SOVFQuestionDataModel], onComplete: @escaping( (FetchError) -> Void) ) {
+        
+        self.persistentContainer?.performBackgroundTask { (moc) in
+            
+            let request = NSFetchRequest<Masjid>(entityName: "Masjid" )
+            request.predicate = NSPredicate(format: "recordName = nil")
+            
+            do {
+                let result = try moc.fetch(request)
+                for r in result {
+                    moc.delete(r)
+                }
+                try moc.save()
+            } catch {
+                
+            }
+        }
+        
+    }
+}
 
 extension MasterViewViewModel {
     
