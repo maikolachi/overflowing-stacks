@@ -17,6 +17,11 @@
 		A49A673123CD16D40005F2D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49A672F23CD16D40005F2D7 /* LaunchScreen.storyboard */; };
 		A49A673C23CD16D40005F2D7 /* OverflowingStacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A673B23CD16D40005F2D7 /* OverflowingStacksTests.swift */; };
 		A49A674723CD16D40005F2D7 /* OverflowingStacksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A674623CD16D40005F2D7 /* OverflowingStacksUITests.swift */; };
+		A49A675723CD18060005F2D7 /* SOVFDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A675623CD18060005F2D7 /* SOVFDataModels.swift */; };
+		A49A675B23CD18CC0005F2D7 /* MasterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A675A23CD18CC0005F2D7 /* MasterViewViewModel.swift */; };
+		A49A675D23CD196C0005F2D7 /* MaterViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A675C23CD196C0005F2D7 /* MaterViewViewModelTests.swift */; };
+		A49A676123CD1EC80005F2D7 /* BaseViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A676023CD1EC80005F2D7 /* BaseViewViewModel.swift */; };
+		A49A676323CD39B40005F2D7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49A676223CD39B40005F2D7 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		A49A674223CD16D40005F2D7 /* OverflowingStacksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverflowingStacksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49A674623CD16D40005F2D7 /* OverflowingStacksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverflowingStacksUITests.swift; sourceTree = "<group>"; };
 		A49A674823CD16D40005F2D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A49A675623CD18060005F2D7 /* SOVFDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOVFDataModels.swift; sourceTree = "<group>"; };
+		A49A675A23CD18CC0005F2D7 /* MasterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewViewModel.swift; sourceTree = "<group>"; };
+		A49A675C23CD196C0005F2D7 /* MaterViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterViewViewModelTests.swift; sourceTree = "<group>"; };
+		A49A676023CD1EC80005F2D7 /* BaseViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewViewModel.swift; sourceTree = "<group>"; };
+		A49A676223CD39B40005F2D7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +113,12 @@
 		A49A671E23CD16D40005F2D7 /* OverflowingStacks */ = {
 			isa = PBXGroup;
 			children = (
+				A49A676223CD39B40005F2D7 /* Session.swift */,
+				A49A676023CD1EC80005F2D7 /* BaseViewViewModel.swift */,
+				A49A675823CD180D0005F2D7 /* Data Models */,
+				A49A675923CD18B50005F2D7 /* Root */,
 				A49A671F23CD16D40005F2D7 /* AppDelegate.swift */,
 				A49A672423CD16D40005F2D7 /* SceneDelegate.swift */,
-				A49A672623CD16D40005F2D7 /* MasterViewController.swift */,
 				A49A672823CD16D40005F2D7 /* DetailViewController.swift */,
 				A49A672A23CD16D40005F2D7 /* Main.storyboard */,
 				A49A672D23CD16D40005F2D7 /* Assets.xcassets */,
@@ -121,6 +134,7 @@
 			children = (
 				A49A673B23CD16D40005F2D7 /* OverflowingStacksTests.swift */,
 				A49A673D23CD16D40005F2D7 /* Info.plist */,
+				A49A675C23CD196C0005F2D7 /* MaterViewViewModelTests.swift */,
 			);
 			path = OverflowingStacksTests;
 			sourceTree = "<group>";
@@ -132,6 +146,23 @@
 				A49A674823CD16D40005F2D7 /* Info.plist */,
 			);
 			path = OverflowingStacksUITests;
+			sourceTree = "<group>";
+		};
+		A49A675823CD180D0005F2D7 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				A49A675623CD18060005F2D7 /* SOVFDataModels.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		A49A675923CD18B50005F2D7 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A49A672623CD16D40005F2D7 /* MasterViewController.swift */,
+				A49A675A23CD18CC0005F2D7 /* MasterViewViewModel.swift */,
+			);
+			path = Root;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,11 +296,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49A675B23CD18CC0005F2D7 /* MasterViewViewModel.swift in Sources */,
 				A49A672723CD16D40005F2D7 /* MasterViewController.swift in Sources */,
+				A49A675723CD18060005F2D7 /* SOVFDataModels.swift in Sources */,
 				A49A672023CD16D40005F2D7 /* AppDelegate.swift in Sources */,
+				A49A676123CD1EC80005F2D7 /* BaseViewViewModel.swift in Sources */,
 				A49A672923CD16D40005F2D7 /* DetailViewController.swift in Sources */,
 				A49A672323CD16D40005F2D7 /* OverflowingStacks.xcdatamodeld in Sources */,
 				A49A672523CD16D40005F2D7 /* SceneDelegate.swift in Sources */,
+				A49A676323CD39B40005F2D7 /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A49A673C23CD16D40005F2D7 /* OverflowingStacksTests.swift in Sources */,
+				A49A675D23CD196C0005F2D7 /* MaterViewViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
