@@ -26,7 +26,8 @@ class MaterViewViewModelTests: XCTestCase {
         let exp = expectation(description: "Waiting for fetch")
         var allq = [SOVFQuestionDataModel]()
         
-        masterViewModel.fetchRecentQuestions(startEpoch: 1578967912 - 4 * 60 * 60, endEpoch: 1578967912 ) { (error, questions, hasMore ) in
+        let endEpoch = 1578967912 - 10000
+        masterViewModel.fetchRecentQuestions(startEpoch: endEpoch - - 72 * 60 * 60, endEpoch: startEpoch  ) { (error, questions, hasMore ) in
             
             if let _ = error {
                 exp.fulfill()
@@ -41,7 +42,7 @@ class MaterViewViewModelTests: XCTestCase {
                 }
             }
         }
-        waitForExpectations(timeout: 100.0, handler: nil)
+        waitForExpectations(timeout: 1000.0, handler: nil)
         XCTAssert(allq.count == 106)
 //        print(allq.count)
         // This is an example of a functional test case.

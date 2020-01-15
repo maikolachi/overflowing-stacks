@@ -56,48 +56,47 @@ class MasterViewViewModel: BaseViewViewModel {
                 decoder.dateDecodingStrategy = .secondsSince1970
                 
                 do {
-                    let responseData = try decoder.decode(SOVFQuestionsResponseDataModel.self, from: data)
+                    let qResponseData = try decoder.decode(SOVFQuestionsResponseDataModel.self, from: data)
         
                     // Pass what has been retrieved so far
-                    let answeredItems = responseData.items.filter {
+                    var questionsAnsweredGT2 = qResponseData.items.filter {
                         return $0.answerCount >= 2
                     }
                     
-                    if responseData.hasMore {
+                    // Fetch the answers to filter out the questions with accepted answers
+                    
+                    let qIds = questionsAnsweredGT2.map { "\($0.id)" }.joined(separator: ";")
+                    self?.fetchAnswers(query: qIds, onCompletion: { (error, answersAccepted, hasMoreAnswers) in
                         
-                        let answersQuery = answeredItems.map { "\($0.id)" }.joined(separator: ";")
-                        
-                        // Fetch all the answers for this page
-                        
-                        self?.fetchAnswers(query: answersQuery, onCompletion: { (error, answers) in
-                            if let error = error {
-                                
-                            } else {
-                                
+                        if let error = error {
+                            // Return the questions batch with an error
+                            let qWithAcceptedAnswers = questionsAnsweredGT2.filter { $0.hasAcceptedAnswer }
+                            onCompletion(FetchError.answerFailure(localizedDescription: error.localizedDescription), qWithAcceptedAnswers , false)
+                        } else if let answers = answersAccepted {
+                            
+                            for a in answers {
+                                for i in 0..<questionsAnsweredGT2.count {
+                                    if questionsAnsweredGT2[i].id == a.questionId {
+                                        questionsAnsweredGT2[i].hasAcceptedAnswer = true
+                                    }
+                                }
                             }
-                        })
-                        
-                        onCompletion(nil, answeredItems, true)
-                        self?.fetchRecentQuestions(page: page + 1, startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: onCompletion)
-                    
-                    
-                    
-                    } else {
-                        
-                        onCompletion(nil, answeredItems, false )
-                        // Fetch the answers
-
-                        // After all the questions are fetched, fetch the
-//                        self?.fetchRecentAnswers(startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: { (error, answerData) in
-//
-//                            if let error = error {
-//                                onCompletion(FetchError.answerFailure(localizedDescription: error.localizedDescription), nil )
-//                            } else {
-//
-//                            }
-//
-//                        })
-                    }
+                            
+                            if hasMoreAnswers {
+                                // more answers coming - waint until all answers to this batch are procssed
+                            } else {
+                                let qWithAcceptedAnswers = questionsAnsweredGT2.filter { $0.hasAcceptedAnswer }
+                                
+                                onCompletion(nil, qWithAcceptedAnswers, qResponseData.hasMore )
+                                
+                                if qResponseData.hasMore {
+                                    // There are more questions
+                                    self?.fetchRecentQuestions(page: page + 1, startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: onCompletion)
+                                }
+                                // No more answers retrieve more questions if necessary
+                            }
+                        }
+                    })
                 } catch {
                     print(error.localizedDescription)
                     onCompletion(FetchError.dataModelDecodeFailure, nil, false)
@@ -106,10 +105,10 @@ class MasterViewViewModel: BaseViewViewModel {
         }.resume()
     }
     
-    func fetchAnswers( page: Int = 1, query: String, onCompletion: @escaping((FetchError?, [SOVFAnswerDataModel]?) -> Void)) {
+    func fetchAnswers( page: Int = 1, query: String, onCompletion: @escaping((FetchError?, [SOVFAnswerDataModel]?, Bool) -> Void)) {
         
         guard let url = self.answerURL(page: page, ids: query) else {
-            onCompletion(FetchError.answerFailure(localizedDescription: "Unable to fetch url"), nil)
+            onCompletion(FetchError.answerFailure(localizedDescription: "Unable to fetch url"), nil, false)
             return
         }
         
@@ -118,53 +117,27 @@ class MasterViewViewModel: BaseViewViewModel {
         session.dataTask(with: url) { [weak self] (data, response, error) in
             
             if let error = error {
-                onCompletion(FetchError.questionFailure(localizedDescription: error.localizedDescription), nil, false )
+                
+                onCompletion(FetchError.answerFailure(localizedDescription: error.localizedDescription), nil, false )
+            
             } else if let data = data {
+                
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .secondsSince1970
                 
                 do {
                     let responseData = try decoder.decode(SOVFAnswersResponseDataModel.self, from: data)
                     
-                    // Pass what has been retrieved so far
-                    let answeredItems = responseData.items.filter {
-                        return $0.answerCount >= 2
+                    let answersAccepted = responseData.items.filter {
+                        return $0.isAccepted
                     }
                     
+                    onCompletion(nil, answersAccepted, responseData.hasMore)
+                    
                     if responseData.hasMore {
-                        
-                        let answersQuery = answeredItems.map { "\($0.id)" }.joined(separator: ";")
-                        
-                        // Fetch all the answers for this page
-                        
-                        self?.fetchAnswers(query: answersQuery, onCompletion: { (error, answers) in
-                            if let error = error {
-                                
-                            } else {
-                                
-                            }
-                        })
-                        
-                        onCompletion(nil, answeredItems, true)
-                        self?.fetchRecentQuestions(page: page + 1, startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: onCompletion)
-                        
-                        
-                        
+                        self?.fetchAnswers(page: page + 1, query: query, onCompletion: onCompletion)
                     } else {
                         
-                        onCompletion(nil, answeredItems, false )
-                        // Fetch the answers
-                        
-                        // After all the questions are fetched, fetch the
-                        //                        self?.fetchRecentAnswers(startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: { (error, answerData) in
-                        //
-                        //                            if let error = error {
-                        //                                onCompletion(FetchError.answerFailure(localizedDescription: error.localizedDescription), nil )
-                        //                            } else {
-                        //
-                        //                            }
-                        //
-                        //                        })
                     }
                 } catch {
                     print(error.localizedDescription)
@@ -172,8 +145,6 @@ class MasterViewViewModel: BaseViewViewModel {
                 }
             }
         }.resume()
-        
-        
     }
 }
 
@@ -226,7 +197,7 @@ extension MasterViewViewModel {
         let end = endEpoch
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "pagesize", value: "50"),
+            URLQueryItem(name: "pagesize", value: "100"),
             URLQueryItem(name: "fromdate", value: "\(start)"),
             URLQueryItem(name: "todate", value: "\(end)"),
             URLQueryItem(name: "order", value: "desc"),
@@ -247,7 +218,7 @@ extension MasterViewViewModel {
         urlComponents.path = "/\(self.apiVersion)/answers/\(ids)"
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "pagesize", value: "50"),
+            URLQueryItem(name: "pagesize", value: "100"),
             URLQueryItem(name: "order", value: "desc"),
             URLQueryItem(name: "sort", value: "activity"),
             URLQueryItem(name: "site", value: "stackoverflow"),

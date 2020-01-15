@@ -34,6 +34,7 @@ struct SOVFQuestionDataModel: Decodable {
     let id: Int64
     let link: String
     let title: String
+    var hasAcceptedAnswer: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case tags
@@ -50,8 +51,18 @@ struct SOVFQuestionDataModel: Decodable {
     }
 }
 
-struct SOVFAnswersDataModel: Decodable {
+struct SOVFAnswersResponseDataModel: Decodable {
+    let items: [SOVFAnswerDataModel]
+    let hasMore: Bool
+    let quotaMax: Int
+    let quotaRemaining: Int
     
+    enum CodingKeys: String, CodingKey {
+        case items
+        case hasMore = "has_more"
+        case quotaMax = "quota_max"
+        case quotaRemaining = "quota_remaining"
+    }
 }
 
 struct SOVFAnswerDataModel: Decodable {
