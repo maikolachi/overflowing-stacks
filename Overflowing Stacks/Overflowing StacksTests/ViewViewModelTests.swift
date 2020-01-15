@@ -27,7 +27,7 @@ class ViewViewModelTests: XCTestCase {
         let endEpoch = 1578967912 - 10000
         var allq = [SOVFQuestionDataModel]()
         var pages = 0
-        viewModel.fetchRecentQuestions(startEpoch: endEpoch - 7 * 24 * 60 * 60, endEpoch: endEpoch) { (questions, hasMore, quotaMax, quotaRemaining, error) in
+        viewModel.fetchRecentQuestions(startEpoch: endEpoch - 1 * 24 * 60 * 60, endEpoch: endEpoch) { (questions, hasMore, quotaMax, quotaRemaining, error) in
             
             if let _ = error {
                 XCTFail()
@@ -43,8 +43,12 @@ class ViewViewModelTests: XCTestCase {
             
         }
     
-        waitForExpectations(timeout: 1000.0, handler: nil)
-        print("Pages: \(pages)")
+        waitForExpectations(timeout: 30.0, handler: nil)
+        
+        // Test counts may change in the future - if pagesize is changed in query, pages will change
+//        XCTAssert(allq.count == 652)
+//        XCTAssert(pages == 53)
+        
         
         
     }

@@ -63,7 +63,7 @@ extension MasterViewViewModel {
         let end = endEpoch
         urlComponents.queryItems = [
             URLQueryItem(name: "page", value: "\(page)"),
-            URLQueryItem(name: "pagesize", value: "100"),
+            URLQueryItem(name: "pagesize", value: "50"),
             URLQueryItem(name: "fromdate", value: "\(start)"),
             URLQueryItem(name: "todate", value: "\(end)"),
             URLQueryItem(name: "order", value: "desc"),
