@@ -17,6 +17,7 @@
 		A496749723CF73BD00983949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A496749523CF73BD00983949 /* LaunchScreen.storyboard */; };
 		A49674A223CF73BD00983949 /* Overflowing_StacksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674A123CF73BD00983949 /* Overflowing_StacksTests.swift */; };
 		A49674AD23CF73BD00983949 /* Overflowing_StacksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674AC23CF73BD00983949 /* Overflowing_StacksUITests.swift */; };
+		A49674BD23CF742500983949 /* SOVFDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674BC23CF742500983949 /* SOVFDataModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		A49674A823CF73BD00983949 /* Overflowing StacksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overflowing StacksUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49674AC23CF73BD00983949 /* Overflowing_StacksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overflowing_StacksUITests.swift; sourceTree = "<group>"; };
 		A49674AE23CF73BD00983949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A49674BC23CF742500983949 /* SOVFDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOVFDataModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,8 @@
 		A496748423CF73BC00983949 /* Overflowing Stacks */ = {
 			isa = PBXGroup;
 			children = (
+				A49674BB23CF740C00983949 /* Data Models */,
+				A49674BA23CF73F600983949 /* Root */,
 				A496748523CF73BC00983949 /* AppDelegate.swift */,
 				A496748A23CF73BC00983949 /* SceneDelegate.swift */,
 				A496748C23CF73BC00983949 /* MasterViewController.swift */,
@@ -132,6 +136,21 @@
 				A49674AE23CF73BD00983949 /* Info.plist */,
 			);
 			path = "Overflowing StacksUITests";
+			sourceTree = "<group>";
+		};
+		A49674BA23CF73F600983949 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		A49674BB23CF740C00983949 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				A49674BC23CF742500983949 /* SOVFDataModels.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A496748D23CF73BC00983949 /* MasterViewController.swift in Sources */,
+				A49674BD23CF742500983949 /* SOVFDataModels.swift in Sources */,
 				A496748623CF73BC00983949 /* AppDelegate.swift in Sources */,
 				A496748F23CF73BC00983949 /* DetailViewController.swift in Sources */,
 				A496748923CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld in Sources */,
