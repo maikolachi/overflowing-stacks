@@ -22,6 +22,9 @@
 		A49674C123CF752400983949 /* BaseViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674C023CF752400983949 /* BaseViewViewModel.swift */; };
 		A49674C323CF75CB00983949 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674C223CF75CB00983949 /* Globals.swift */; };
 		A49674C723CF7F1600983949 /* ViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674C623CF7F1600983949 /* ViewViewModelTests.swift */; };
+		A49674CA23CF87DB00983949 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674C923CF87DB00983949 /* MasterTableViewCell.swift */; };
+		A49674CD23CF949500983949 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674CC23CF949500983949 /* SettingsViewController.swift */; };
+		A49674CF23CF94BB00983949 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49674CE23CF94BB00983949 /* Settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		A49674C023CF752400983949 /* BaseViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewViewModel.swift; sourceTree = "<group>"; };
 		A49674C223CF75CB00983949 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		A49674C623CF7F1600983949 /* ViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewViewModelTests.swift; sourceTree = "<group>"; };
+		A49674C923CF87DB00983949 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterTableViewCell.swift; path = ../../../../../Documents/MasterTableViewCell.swift; sourceTree = "<group>"; };
+		A49674CC23CF949500983949 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../../Documents/SettingsViewController.swift; sourceTree = "<group>"; };
+		A49674CE23CF94BB00983949 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = ../../../../../Documents/Settings.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,17 +119,17 @@
 		A496748423CF73BC00983949 /* Overflowing Stacks */ = {
 			isa = PBXGroup;
 			children = (
-				A496748C23CF73BC00983949 /* MasterViewController.swift */,
+				A49674CB23CF945500983949 /* Setting */,
+				A496749023CF73BC00983949 /* Main.storyboard */,
+				A49674C823CF85F100983949 /* Master */,
 				A49674BB23CF740C00983949 /* Data Models */,
 				A496748523CF73BC00983949 /* AppDelegate.swift */,
 				A496748A23CF73BC00983949 /* SceneDelegate.swift */,
 				A496748E23CF73BC00983949 /* DetailViewController.swift */,
-				A496749023CF73BC00983949 /* Main.storyboard */,
 				A496749323CF73BD00983949 /* Assets.xcassets */,
 				A496749523CF73BD00983949 /* LaunchScreen.storyboard */,
 				A496749823CF73BD00983949 /* Info.plist */,
 				A496748723CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld */,
-				A49674BE23CF750200983949 /* MasterViewViewModel.swift */,
 				A49674C023CF752400983949 /* BaseViewViewModel.swift */,
 				A49674C223CF75CB00983949 /* Globals.swift */,
 			);
@@ -155,6 +161,25 @@
 				A49674BC23CF742500983949 /* SOVFDataModels.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		A49674C823CF85F100983949 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				A496748C23CF73BC00983949 /* MasterViewController.swift */,
+				A49674BE23CF750200983949 /* MasterViewViewModel.swift */,
+				A49674C923CF87DB00983949 /* MasterTableViewCell.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		A49674CB23CF945500983949 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				A49674CC23CF949500983949 /* SettingsViewController.swift */,
+				A49674CE23CF94BB00983949 /* Settings.storyboard */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +289,7 @@
 				A496749723CF73BD00983949 /* LaunchScreen.storyboard in Resources */,
 				A496749423CF73BD00983949 /* Assets.xcassets in Resources */,
 				A496749223CF73BC00983949 /* Main.storyboard in Resources */,
+				A49674CF23CF94BB00983949 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,9 +316,11 @@
 			files = (
 				A49674BF23CF750200983949 /* MasterViewViewModel.swift in Sources */,
 				A496748D23CF73BC00983949 /* MasterViewController.swift in Sources */,
+				A49674CD23CF949500983949 /* SettingsViewController.swift in Sources */,
 				A49674BD23CF742500983949 /* SOVFDataModels.swift in Sources */,
 				A496748623CF73BC00983949 /* AppDelegate.swift in Sources */,
 				A49674C123CF752400983949 /* BaseViewViewModel.swift in Sources */,
+				A49674CA23CF87DB00983949 /* MasterTableViewCell.swift in Sources */,
 				A496748F23CF73BC00983949 /* DetailViewController.swift in Sources */,
 				A496748923CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld in Sources */,
 				A496748B23CF73BC00983949 /* SceneDelegate.swift in Sources */,
