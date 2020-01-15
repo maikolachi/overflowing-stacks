@@ -12,10 +12,10 @@ class MasterViewViewModel: BaseViewViewModel {
     
     // onCompletion( error?, filteredQuestions, hasMore, quota, quotaRemaining )
     
-    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping(( [SOVFQuestionDataModel]?, Bool, Int?, Int?, FetchError?) -> Void) ) {
+    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping(( [SOVFQuestionDataModel]?, Bool, Int, Int, FetchError?) -> Void) ) {
         
         guard let url = self.questionURL(page: page, startEpoch: startEpoch, endEpoch: endEpoch) else {
-            onCompletion(nil, false, nil, nil, FetchError.configurationFailure )
+            onCompletion(nil, false, -1, -1, FetchError.configurationFailure )
             return
         }
         
@@ -23,7 +23,7 @@ class MasterViewViewModel: BaseViewViewModel {
         session.dataTask(with: url) { [weak self] (data, response, error) in
             
             if let error = error {
-                onCompletion(nil, false, nil, nil, FetchError.questionsRetrieveFailure(localizedDescription: error.localizedDescription))
+                onCompletion(nil, false, -1, -1, FetchError.questionsRetrieveFailure(localizedDescription: error.localizedDescription))
             } else if let data = data {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .secondsSince1970
@@ -41,12 +41,12 @@ class MasterViewViewModel: BaseViewViewModel {
                     
                 } catch {
                     print(error)
-                    onCompletion(nil, false, nil, nil, FetchError.dataModelDecodeFailure)
+                    onCompletion(nil, false, -1, -1, FetchError.dataModelDecodeFailure)
                 }
             } else {
-                onCompletion(nil, false, nil, nil, FetchError.otherFailure)
+                onCompletion(nil, false, -1, -1, FetchError.otherFailure)
             }
-        }
+        }.resume()
     }
     
     
