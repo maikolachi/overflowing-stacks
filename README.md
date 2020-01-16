@@ -1,9 +1,12 @@
 # Overflowing Stacks
-Retrieves recent questions submitted to Stack Overflow and displays those that have atleast two questions answered and an accepted answer. 
 
-Program demonstrates the use of the Stack Overflow API. The app is registered with Stack Apps. MVVM and TDD (brief) design pattern is generally followed. 
+This is an `iOS 13.2+` app that retrieves recently submitted questions from Stack Overflow that have an accepted answer and more than one answer. The past duration is set to 4 hours initially but can be changed by clicking on the top left navigation button.
 
-- The master view retrieves one page (50 questions) at a time for the time period specified and adds the rows to the tableview as they are retrieved.
+
+- Using TDD (brief) and MVVM pattern generally
+- Generated the app using the iOS master-detail template so some boiler plate code may still be around
+- The master view retrieves a page at a time (50 questions), filters them and displays the relavent ones.  
+- Settings allows 
 - The past time period can be changed in the Settings view accessible by clicking on the hours display button (top left).
 - After retrieving each page, the dataset is filtered to return questions that have more than one answer and an accepted answer. 
 - Clicking on a row will segue to the detail view controller that displays the questions & answers in a webview.
@@ -16,4 +19,4 @@ Program demonstrates the use of the Stack Overflow API. The app is registered wi
 - Targeting `iOS 13.2` and last built on `XCode 11.3.1`
 - Clone the repository and checkout the `master` branch in XCode and run on an iPhone Simmulator or device. 
 
-The user inteface is intuitive, displays the recently submitted Stack Overflow questions. 
+The user inteface is intuitive, displays the recently submitted Stack Overflow questions. Works on both the IPad and iPhone correctly. Realize that 
