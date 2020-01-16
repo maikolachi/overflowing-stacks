@@ -37,7 +37,7 @@ class MasterViewViewModel: BaseViewViewModel {
                 do {
                     let responseData = try decoder.decode(SOVFQuestionsResponseDataModel.self, from: data)
                     
-                    let acceptedFiltered = responseData.items.filter{ $0.answerCount >= 2 && $0.acceptedAnswerId != nil}
+                    let acceptedFiltered = responseData.items?.filter{ $0.answerCount >= 2 && $0.acceptedAnswerId != nil} ?? []
                     
                     let isCancelled = (self?.cancelled ?? false) && page != 1
                     
