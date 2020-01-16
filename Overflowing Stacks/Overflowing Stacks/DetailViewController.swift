@@ -7,28 +7,37 @@
 //
 
 import UIKit
+import WebKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var webView: WKWebView!
+    
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.timestamp!.description
+            print(detail.link)
+            if let u = detail.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                let url = URL(string: u)
+                
+                let request = URLRequest(url: url!)
+//                self.webView.load(request)
             }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.webView.uiDelegate = self
+        
         // Do any additional setup after loading the view.
         configureView()
     }
 
-    var detailItem: Event? {
+    var detailItem: SOVFQuestionDataModel? {
         didSet {
             // Update the view.
             configureView()

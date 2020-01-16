@@ -31,7 +31,7 @@ class MasterViewViewModel: BaseViewViewModel {
                 do {
                     let responseData = try decoder.decode(SOVFQuestionsResponseDataModel.self, from: data)
                     
-                    let acceptedFiltered = responseData.items.filter{ $0.answerCount > 0 && $0.acceptedAnswerId != nil}
+                    let acceptedFiltered = responseData.items.filter{ $0.answerCount >= 2 && $0.acceptedAnswerId != nil}
                     
                     onCompletion(acceptedFiltered, responseData.hasMore, responseData.quotaMax, responseData.quotaRemaining, nil)
                     if responseData.hasMore {
@@ -48,8 +48,7 @@ class MasterViewViewModel: BaseViewViewModel {
             }
         }.resume()
     }
-    
-    
+
 }
 
 extension MasterViewViewModel {

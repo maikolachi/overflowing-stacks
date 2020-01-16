@@ -25,6 +25,10 @@
 		A49674CA23CF87DB00983949 /* MasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674C923CF87DB00983949 /* MasterTableViewCell.swift */; };
 		A49674CD23CF949500983949 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674CC23CF949500983949 /* SettingsViewController.swift */; };
 		A49674CF23CF94BB00983949 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49674CE23CF94BB00983949 /* Settings.storyboard */; };
+		A49674DB23CFB7C800983949 /* Registry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674D923CFB7C800983949 /* Registry+CoreDataClass.swift */; };
+		A49674DC23CFB7C800983949 /* Registry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674DA23CFB7C800983949 /* Registry+CoreDataProperties.swift */; };
+		A49674E023CFB8AE00983949 /* Registrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674DF23CFB8AE00983949 /* Registrator.swift */; };
+		A49674E223CFE17000983949 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49674E123CFE17000983949 /* String+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		A49674C923CF87DB00983949 /* MasterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterTableViewCell.swift; path = ../../../../../Documents/MasterTableViewCell.swift; sourceTree = "<group>"; };
 		A49674CC23CF949500983949 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../../../../../Documents/SettingsViewController.swift; sourceTree = "<group>"; };
 		A49674CE23CF94BB00983949 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = ../../../../../Documents/Settings.storyboard; sourceTree = "<group>"; };
+		A49674D923CFB7C800983949 /* Registry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A49674DA23CFB7C800983949 /* Registry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A49674DF23CFB8AE00983949 /* Registrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Registrator.swift; path = "Managed Objects/Registrator.swift"; sourceTree = "<group>"; };
+		A49674E123CFE17000983949 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,8 @@
 		A496748423CF73BC00983949 /* Overflowing Stacks */ = {
 			isa = PBXGroup;
 			children = (
+				A49674DF23CFB8AE00983949 /* Registrator.swift */,
+				A49674D423CFB77B00983949 /* Managed Objects */,
 				A49674CB23CF945500983949 /* Setting */,
 				A496749023CF73BC00983949 /* Main.storyboard */,
 				A49674C823CF85F100983949 /* Master */,
@@ -132,6 +142,7 @@
 				A496748723CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld */,
 				A49674C023CF752400983949 /* BaseViewViewModel.swift */,
 				A49674C223CF75CB00983949 /* Globals.swift */,
+				A49674E123CFE17000983949 /* String+.swift */,
 			);
 			path = "Overflowing Stacks";
 			sourceTree = "<group>";
@@ -180,6 +191,15 @@
 				A49674CE23CF94BB00983949 /* Settings.storyboard */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		A49674D423CFB77B00983949 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				A49674D923CFB7C800983949 /* Registry+CoreDataClass.swift */,
+				A49674DA23CFB7C800983949 /* Registry+CoreDataProperties.swift */,
+			);
+			path = "Managed Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,12 +336,16 @@
 			files = (
 				A49674BF23CF750200983949 /* MasterViewViewModel.swift in Sources */,
 				A496748D23CF73BC00983949 /* MasterViewController.swift in Sources */,
+				A49674DC23CFB7C800983949 /* Registry+CoreDataProperties.swift in Sources */,
 				A49674CD23CF949500983949 /* SettingsViewController.swift in Sources */,
 				A49674BD23CF742500983949 /* SOVFDataModels.swift in Sources */,
+				A49674E023CFB8AE00983949 /* Registrator.swift in Sources */,
 				A496748623CF73BC00983949 /* AppDelegate.swift in Sources */,
+				A49674E223CFE17000983949 /* String+.swift in Sources */,
 				A49674C123CF752400983949 /* BaseViewViewModel.swift in Sources */,
 				A49674CA23CF87DB00983949 /* MasterTableViewCell.swift in Sources */,
 				A496748F23CF73BC00983949 /* DetailViewController.swift in Sources */,
+				A49674DB23CFB7C800983949 /* Registry+CoreDataClass.swift in Sources */,
 				A496748923CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld in Sources */,
 				A496748B23CF73BC00983949 /* SceneDelegate.swift in Sources */,
 				A49674C323CF75CB00983949 /* Globals.swift in Sources */,
