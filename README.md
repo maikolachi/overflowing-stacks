@@ -19,7 +19,7 @@ This is an `iOS 13.2+` app that retrieves recently submitted questions from Stac
 
 ## Screen Shots
 
-The user inteface is intuitive, displays the recently submitted Stack Overflow questions. Works on both the IPad and iPhone correctly. Realize that on the iPad in portrait mode the master view is hidden by default and you need to swipe right from the left to show it. 
+The user inteface is intuitive, displays the recently submitted Stack Overflow questions. Works on both the iPad and iPhone correctly. Realize that on the iPad in portrait mode the master view is hidden by default and you need to swipe right from the left to show it. 
 
 ![iPad Portrait](screen-shots/ipad-portrait.png)
 
