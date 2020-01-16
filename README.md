@@ -17,6 +17,8 @@ This is an `iOS 13.2+` app that retrieves recently submitted questions from Stac
 - Last built `XCode 11.3.1` and ran in the simulator successfully
 - Clone the repository and checkout the `master` branch and you should be able to run it on any simulator in XCode.
 
+### This is the Story Board version, will attempt the SwiftUI version later
+
 ## Screen Shots
 
 The user inteface is intuitive, displays the recently submitted Stack Overflow questions. Works on both the iPad and iPhone correctly. Realize that on the iPad in portrait mode the master view is hidden by default and you need to swipe right from the left to show it. 
