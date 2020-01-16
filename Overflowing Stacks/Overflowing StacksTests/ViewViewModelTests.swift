@@ -24,10 +24,11 @@ class ViewViewModelTests: XCTestCase {
     func testFetchQuestions() {
         
         let exp = expectation(description: "Wait for fetch")
-        let endEpoch = 1578967912 - 10000
+//        let endEpoch = 1578967912 - 10000
         var allq = [SOVFQuestionDataModel]()
         var pages = 0
-        viewModel.fetchRecentQuestions(startEpoch: endEpoch - 1 * 24 * 60 * 60, endEpoch: endEpoch) { (questions, hasMore, quotaMax, quotaRemaining, error) in
+        // a 24 hour interval around the 16th of Jan
+        viewModel.fetchRecentQuestions(startEpoch: 1579097911, endEpoch: 1579184311) { (questions, hasMore, quotaMax, quotaRemaining, error) in
             
             if let _ = error {
                 XCTFail()
