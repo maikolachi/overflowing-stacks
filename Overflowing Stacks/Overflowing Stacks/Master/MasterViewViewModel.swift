@@ -10,20 +10,26 @@ import Foundation
 
 class MasterViewViewModel: BaseViewViewModel {
     
-    // onCompletion( error?, filteredQuestions, hasMore, quota, quotaRemaining )
+    var cancelled = false
+    // onCompletion( error?, filteredQuestions, hasMore, quota, isRetrieveCancelled, quotaRemaining )
     
-    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping(( [SOVFQuestionDataModel]?, Bool, Int, Int, FetchError?) -> Void) ) {
+    func fetchRecentQuestions( page: Int = 1, startEpoch: Int, endEpoch: Int, onCompletion: @escaping(( [SOVFQuestionDataModel]?, Bool, Int, Int, Bool, FetchError?) -> Void) ) {
         
         guard let url = self.questionURL(page: page, startEpoch: startEpoch, endEpoch: endEpoch) else {
-            onCompletion(nil, false, -1, -1, FetchError.configurationFailure )
+            onCompletion(nil, false, -1, -1, false, FetchError.configurationFailure )
             return
         }
         
         let session = URLSession(configuration: .default)
         session.dataTask(with: url) { [weak self] (data, response, error) in
             
+            if page == 1 {
+                // Cannot cancel on first page - reset on a new retrieve
+                self?.cancelled = false
+            }
+            
             if let error = error {
-                onCompletion(nil, false, -1, -1, FetchError.questionsRetrieveFailure(localizedDescription: error.localizedDescription))
+                onCompletion(nil, false, -1, -1, false, FetchError.questionsRetrieveFailure(localizedDescription: error.localizedDescription))
             } else if let data = data {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .secondsSince1970
@@ -33,18 +39,20 @@ class MasterViewViewModel: BaseViewViewModel {
                     
                     let acceptedFiltered = responseData.items.filter{ $0.answerCount >= 2 && $0.acceptedAnswerId != nil}
                     
-                    onCompletion(acceptedFiltered, responseData.hasMore, responseData.quotaMax, responseData.quotaRemaining, nil)
-                    if responseData.hasMore {
+                    let isCancelled = (self?.cancelled ?? false) && page != 1
+                    
+                    onCompletion(acceptedFiltered, responseData.hasMore, responseData.quotaMax, responseData.quotaRemaining, isCancelled, nil)
+                    if responseData.hasMore && !isCancelled {
                         // Keep calling this recursively until there are more pages
                         self?.fetchRecentQuestions(page: page + 1, startEpoch: startEpoch, endEpoch: endEpoch, onCompletion: onCompletion)
                     }
                     
                 } catch {
                     print(error)
-                    onCompletion(nil, false, -1, -1, FetchError.dataModelDecodeFailure)
+                    onCompletion(nil, false, -1, -1, false, FetchError.dataModelDecodeFailure)
                 }
             } else {
-                onCompletion(nil, false, -1, -1, FetchError.otherFailure)
+                onCompletion(nil, false, -1, -1, false, FetchError.otherFailure)
             }
         }.resume()
     }
