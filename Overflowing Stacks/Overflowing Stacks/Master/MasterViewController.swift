@@ -20,6 +20,8 @@ class MasterViewController: UITableViewController {
     @IBOutlet weak var countDisplay: UILabel!
     @IBOutlet weak var durationDisplay: UIBarButtonItem!
     
+    var isRetrieveCancelled = false
+    
     var duration: Int = 4
     var allQuestions = [SOVFQuestionDataModel]()
     
@@ -49,11 +51,14 @@ class MasterViewController: UITableViewController {
     }
     
     func refresh() {
+        
+        self.viewModel.cancelled = true
+        
         let end = Int(Date().timeIntervalSince1970)
         let start = end - self.duration * 3600
         
         self.allQuestions.removeAll()
-        self.viewModel.fetchRecentQuestions(startEpoch: start, endEpoch: end) { (questions, hasMore, quotaMax, quotaRemaining, error) in
+        self.viewModel.fetchRecentQuestions(startEpoch: start, endEpoch: end) { (questions, hasMore, quotaMax, quotaRemaining, isCancelled, error) in
             
             if let error = error {
                 let alert = UIAlertController(title: "Retrieve Error", message: "Error retrieving questions from Stack Overflow: \(error.localizedDescription)", preferredStyle: .alert)
@@ -70,7 +75,7 @@ class MasterViewController: UITableViewController {
                 self.allQuestions.append(contentsOf: questions)
                 
                 DispatchQueue.main.async {
-                    self.countDisplay.text = "\(self.allQuestions.count) questions"
+                    self.countDisplay.text = "\(self.allQuestions.count) questions" + (isCancelled ? " (STOPPED)" : "")
                     self.tableView.reloadData()
                 }
             }

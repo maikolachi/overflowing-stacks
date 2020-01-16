@@ -75,7 +75,7 @@
 		A49674CE23CF94BB00983949 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = ../../../../../Documents/Settings.storyboard; sourceTree = "<group>"; };
 		A49674D923CFB7C800983949 /* Registry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A49674DA23CFB7C800983949 /* Registry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Registry+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A49674DF23CFB8AE00983949 /* Registrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Registrator.swift; path = "Managed Objects/Registrator.swift"; sourceTree = "<group>"; };
+		A49674DF23CFB8AE00983949 /* Registrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registrator.swift; sourceTree = "<group>"; };
 		A49674E123CFE17000983949 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +104,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A479DECC23D0E38500AEA40B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A496748E23CF73BC00983949 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		A479DECD23D0E3A800AEA40B /* Globals+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A49674C023CF752400983949 /* BaseViewViewModel.swift */,
+				A49674C223CF75CB00983949 /* Globals.swift */,
+				A49674DF23CFB8AE00983949 /* Registrator.swift */,
+				A49674E123CFE17000983949 /* String+.swift */,
+			);
+			path = "Globals+Extensions";
+			sourceTree = "<group>";
+		};
 		A496747923CF73BC00983949 = {
 			isa = PBXGroup;
 			children = (
@@ -127,22 +146,16 @@
 		A496748423CF73BC00983949 /* Overflowing Stacks */ = {
 			isa = PBXGroup;
 			children = (
-				A49674DF23CFB8AE00983949 /* Registrator.swift */,
+				A479DECD23D0E3A800AEA40B /* Globals+Extensions */,
 				A49674D423CFB77B00983949 /* Managed Objects */,
-				A49674CB23CF945500983949 /* Setting */,
 				A496749023CF73BC00983949 /* Main.storyboard */,
 				A49674C823CF85F100983949 /* Master */,
-				A49674BB23CF740C00983949 /* Data Models */,
 				A496748523CF73BC00983949 /* AppDelegate.swift */,
 				A496748A23CF73BC00983949 /* SceneDelegate.swift */,
-				A496748E23CF73BC00983949 /* DetailViewController.swift */,
 				A496749323CF73BD00983949 /* Assets.xcassets */,
 				A496749523CF73BD00983949 /* LaunchScreen.storyboard */,
 				A496749823CF73BD00983949 /* Info.plist */,
 				A496748723CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld */,
-				A49674C023CF752400983949 /* BaseViewViewModel.swift */,
-				A49674C223CF75CB00983949 /* Globals.swift */,
-				A49674E123CFE17000983949 /* String+.swift */,
 			);
 			path = "Overflowing Stacks";
 			sourceTree = "<group>";
@@ -177,6 +190,9 @@
 		A49674C823CF85F100983949 /* Master */ = {
 			isa = PBXGroup;
 			children = (
+				A49674BB23CF740C00983949 /* Data Models */,
+				A49674CB23CF945500983949 /* Setting */,
+				A479DECC23D0E38500AEA40B /* Detail */,
 				A496748C23CF73BC00983949 /* MasterViewController.swift */,
 				A49674BE23CF750200983949 /* MasterViewViewModel.swift */,
 				A49674C923CF87DB00983949 /* MasterTableViewCell.swift */,
@@ -190,7 +206,8 @@
 				A49674CC23CF949500983949 /* SettingsViewController.swift */,
 				A49674CE23CF94BB00983949 /* Settings.storyboard */,
 			);
-			path = Setting;
+			name = Setting;
+			path = ../Setting;
 			sourceTree = "<group>";
 		};
 		A49674D423CFB77B00983949 /* Managed Objects */ = {

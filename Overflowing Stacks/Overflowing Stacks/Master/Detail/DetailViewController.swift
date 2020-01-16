@@ -17,17 +17,19 @@ class DetailViewController: UIViewController, WKUIDelegate {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            print(detail.link)
-            if let u = detail.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                let url = URL(string: u)
-                
-                let request = URLRequest(url: url!)
-//                self.webView.load(request)
-            }
+        
+        guard
+            let detail = self.detailItem,
+            let u = detail.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let webView = self.webView,
+            let url = URL(string: u) else {
+                return
         }
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
