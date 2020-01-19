@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 private let dateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
@@ -66,7 +67,8 @@ struct MasterView: View {
         List {
             ForEach( viewModel.questions ) { (question) in
                 NavigationLink(
-                    destination: DetailView(question: question)
+                    destination: WebView(question: question).edgesIgnoringSafeArea(.all)
+//                    destination: DetailView(question: question)
                 ) {
                     Text(question.title)
 //                    Text("\(event.timestamp!, formatter: dateFormatter)")
@@ -88,6 +90,28 @@ struct DetailView: View {
     }
 }
 
+struct WebView: UIViewRepresentable {
+    
+    let question: SOVFQuestionDataModel
+    
+    func makeUIView(context: UIViewRepresentableContext<WebView>) -> WKWebView {
+        let webView = WKWebView()
+        
+        guard
+            let u = question.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: u) else {
+            return webView
+        }
+        let request = URLRequest(url: url)
+        webView.load(request)
+        return webView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<WebView>) {
+        
+    }
+    
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
