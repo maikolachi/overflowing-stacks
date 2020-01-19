@@ -16,21 +16,27 @@ private let dateFormatter: DateFormatter = {
 }()
 
 struct ContentView: View {
+    
+    @ObservedObject private var viewModel: MasterViewViewModel = MasterViewViewModel()
+    
     @Environment(\.managedObjectContext)
     var viewContext   
  
     var body: some View {
         NavigationView {
-            MasterView()
-                .navigationBarTitle(Text("Master"))
+            MasterView(viewModel: self.viewModel)
+                .navigationBarTitle(Text("Recent Questions"))
                 .navigationBarItems(
                     leading: EditButton(),
                     trailing: Button(
                         action: {
-                            withAnimation { Event.create(in: self.viewContext) }
+                            withAnimation {
+                                self.viewModel.fetchRecentQuestions(self.viewContext)
+                                
+                            }
                         }
-                    ) { 
-                        Image(systemName: "plus")
+                    ) {
+                        Image(systemName: "arrow.counterclockwise.icloud")
                     }
                 )
             Text("Detail view content goes here")
@@ -40,21 +46,30 @@ struct ContentView: View {
 }
 
 struct MasterView: View {
+    
+    @ObservedObject var viewModel: MasterViewViewModel
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Event.timestamp, ascending: true)], 
+        sortDescriptors: [NSSortDescriptor(keyPath: \Event.timestamp, ascending: true)],
         animation: .default)
     var events: FetchedResults<Event>
 
+//    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "key", ascending: true)],
+//                  predicate: NSPredicate(format: "key == %@", RegistryKey.duration.rawValue),
+//                  animation: .default)
+//    var duration: FetchedResults<Registry>
+    
     @Environment(\.managedObjectContext)
     var viewContext
 
     var body: some View {
         List {
-            ForEach(events, id: \.self) { event in
+            ForEach( viewModel.questions ) { (question) in
                 NavigationLink(
-                    destination: DetailView(event: event)
+                    destination: DetailView(question: question)
                 ) {
-                    Text("\(event.timestamp!, formatter: dateFormatter)")
+                    Text(question.title)
+//                    Text("\(event.timestamp!, formatter: dateFormatter)")
                 }
             }.onDelete { indices in
                 self.events.delete(at: indices, from: self.viewContext)
@@ -64,11 +79,12 @@ struct MasterView: View {
 }
 
 struct DetailView: View {
-    @ObservedObject var event: Event
+    let question: SOVFQuestionDataModel
+//    @ObservedObject var event: Event
 
     var body: some View {
-        Text("\(event.timestamp!, formatter: dateFormatter)")
-            .navigationBarTitle(Text("Detail"))
+        Text(question.title)
+            .navigationBarTitle(Text("\(question.title)"))
     }
 }
 

@@ -17,6 +17,8 @@
 		A4288B2F23D38BC400219F67 /* Overflowing_Stacks_SUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4288B2E23D38BC400219F67 /* Overflowing_Stacks_SUITests.swift */; };
 		A4288B3A23D38BC400219F67 /* Overflowing_Stacks_SUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4288B3923D38BC400219F67 /* Overflowing_Stacks_SUIUITests.swift */; };
 		A4288B4623D3EEC100219F67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4288B4523D3EEC100219F67 /* Assets.xcassets */; };
+		A4288B4E23D4707100219F67 /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4288B4D23D4707100219F67 /* DataModels.swift */; };
+		A4288B5023D470AA00219F67 /* MasterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4288B4F23D470AA00219F67 /* MasterViewViewModel.swift */; };
 		A496748623CF73BC00983949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496748523CF73BC00983949 /* AppDelegate.swift */; };
 		A496748923CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A496748723CF73BC00983949 /* Overflowing_Stacks.xcdatamodeld */; };
 		A496748B23CF73BC00983949 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496748A23CF73BC00983949 /* SceneDelegate.swift */; };
@@ -89,6 +91,8 @@
 		A4288B3923D38BC400219F67 /* Overflowing_Stacks_SUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overflowing_Stacks_SUIUITests.swift; sourceTree = "<group>"; };
 		A4288B3B23D38BC400219F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4288B4523D3EEC100219F67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Overflowing Stacks/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		A4288B4D23D4707100219F67 /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
+		A4288B4F23D470AA00219F67 /* MasterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewViewModel.swift; sourceTree = "<group>"; };
 		A496748223CF73BC00983949 /* Overflowing Stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Overflowing Stacks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A496748523CF73BC00983949 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A496748823CF73BC00983949 /* Overflowing_Stacks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overflowing_Stacks.xcdatamodel; sourceTree = "<group>"; };
@@ -168,7 +172,7 @@
 		A4288B1123D38BC300219F67 /* Overflowing Stacks SUI */ = {
 			isa = PBXGroup;
 			children = (
-				A4288B4523D3EEC100219F67 /* Assets.xcassets */,
+				A4288B5123D47B4A00219F67 /* Models */,
 				A4288B1223D38BC300219F67 /* AppDelegate.swift */,
 				A4288B1723D38BC300219F67 /* SceneDelegate.swift */,
 				A4288B1923D38BC300219F67 /* Event.swift */,
@@ -176,6 +180,7 @@
 				A4288B2223D38BC400219F67 /* LaunchScreen.storyboard */,
 				A4288B2523D38BC400219F67 /* Info.plist */,
 				A4288B1423D38BC300219F67 /* Overflowing_Stacks_SUI.xcdatamodeld */,
+				A4288B4523D3EEC100219F67 /* Assets.xcassets */,
 				A4288B1F23D38BC400219F67 /* Preview Content */,
 			);
 			path = "Overflowing Stacks SUI";
@@ -207,6 +212,15 @@
 			path = "Overflowing Stacks SUIUITests";
 			sourceTree = "<group>";
 		};
+		A4288B5123D47B4A00219F67 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4288B4D23D4707100219F67 /* DataModels.swift */,
+				A4288B4F23D470AA00219F67 /* MasterViewViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A479DECC23D0E38500AEA40B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,9 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				A496748423CF73BC00983949 /* Overflowing Stacks */,
+				A4288B1123D38BC300219F67 /* Overflowing Stacks SUI */,
 				A49674A023CF73BD00983949 /* Overflowing StacksTests */,
 				A49674AB23CF73BD00983949 /* Overflowing StacksUITests */,
-				A4288B1123D38BC300219F67 /* Overflowing Stacks SUI */,
 				A4288B2D23D38BC400219F67 /* Overflowing Stacks SUITests */,
 				A4288B3823D38BC400219F67 /* Overflowing Stacks SUIUITests */,
 				A496748323CF73BC00983949 /* Products */,
@@ -550,7 +564,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4288B5023D470AA00219F67 /* MasterViewViewModel.swift in Sources */,
 				A4288B1A23D38BC300219F67 /* Event.swift in Sources */,
+				A4288B4E23D4707100219F67 /* DataModels.swift in Sources */,
 				A4288B1C23D38BC300219F67 /* ContentView.swift in Sources */,
 				A4288B1323D38BC300219F67 /* AppDelegate.swift in Sources */,
 				A4288B1623D38BC300219F67 /* Overflowing_Stacks_SUI.xcdatamodeld in Sources */,
