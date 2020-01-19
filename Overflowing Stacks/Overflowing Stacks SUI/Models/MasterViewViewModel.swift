@@ -17,7 +17,11 @@ final class MasterViewViewModel: Combine.ObservableObject {
     var isCancelled = false
     var errorMessage: String? = nil
     
-    func fetchRecentQuestions(_ moc: NSManagedObjectContext, page: Int = 1) {
+    init() {
+        self.fetchRecentQuestions()
+    }
+    
+    func fetchRecentQuestions( page: Int = 1) {
         
         let endEpoch: Int = Int(Date().timeIntervalSince1970)
         let startEpoch: Int = endEpoch - 72 * 60 * 60
@@ -59,7 +63,7 @@ final class MasterViewViewModel: Combine.ObservableObject {
                     
                     if responseData.hasMore && !isCancelled {
                         // Keep calling this recursively until there are more pages
-                        self?.fetchRecentQuestions(moc, page: page + 1)
+                        self?.fetchRecentQuestions(page: page + 1)
                     }
                     
                 } catch {

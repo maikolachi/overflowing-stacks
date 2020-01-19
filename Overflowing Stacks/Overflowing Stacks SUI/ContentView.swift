@@ -32,7 +32,7 @@ struct ContentView: View {
                     trailing: Button(
                         action: {
                             withAnimation {
-                                self.viewModel.fetchRecentQuestions(self.viewContext)
+                                self.viewModel.fetchRecentQuestions()
                                 
                             }
                         }
