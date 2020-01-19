@@ -2,6 +2,8 @@
 
 This is an `iOS 13.2+` app that retrieves recently submitted questions from Stack Overflow that have an accepted answer and more than one answer. The past duration is set to 4 hours initially but can be changed by clicking on the top left navigation button.
 
+`Update:` Added SwiftUI target in the same project.  
+
 - Using TDD (brief) and MVVM pattern
 - Generated the app using the iOS master-detail template so some boiler plate code may still be around
 - The master view retrieves a page at a time (50 questions), filters them and displays the relavent ones.  
